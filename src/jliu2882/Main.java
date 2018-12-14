@@ -8,6 +8,7 @@ public class Main {
         HiddenWord trial1 = new HiddenWord("APPLE");
         String hint = "";
         Scanner in = new Scanner(System.in);
+        System.out.println("The word is "+trial1.getHiddenWord().length()+" letter long.");
         System.out.println("What's your guess?");
         String guess = in.nextLine();
         hint = trial1.getHint(guess);

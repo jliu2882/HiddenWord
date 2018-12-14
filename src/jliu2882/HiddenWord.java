@@ -7,29 +7,27 @@ public class HiddenWord {
         this.hiddenWord=hiddenWord;
     }
 
-public String getHint(String guessIn){
-        if(guessIn.length()==hiddenWord.length()) {
-            String hint = "";
+    public String getHiddenWord() {
+        return hiddenWord;
+    }
+
+    public String getHint(String guessIn) {
+        String hint = "";
+        try {
             String guess = guessIn.toUpperCase();
             for (int i = 0; i < hiddenWord.length(); i++) {
                 if (guess.substring(i, i + 1).equals(hiddenWord.substring(i, i + 1))) {
                     hint += guess.substring(i, i + 1);
+                } else if (hiddenWord.indexOf(guess.charAt(i)) >= 0) {
+                    hint += "+";
                 } else {
-                    for (int j = 0; j < hiddenWord.length(); j++) {
-                        if (guess.substring(i, i + 1).equals(hiddenWord.substring(j, j + 1))) {
-                            hint += "+";
-                            j = hiddenWord.length();
-                        } else {
-                            hint += "*";
-                            j = hiddenWord.length();
-                        }
-                    }
+                    hint += "*";
                 }
             }
-            return hint;
-        }
-        else {
-            return null;
-        }
+            }
+            catch(StringIndexOutOfBoundsException e){
+                System.out.println("Your guess does not match the hidden word!");
+            }
+        return hint;
     }
 }
